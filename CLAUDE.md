@@ -5,11 +5,11 @@ A static single-page QR code generator with cute themed frames and styles. No ba
 ## Commands
 
 ```bash
-npm install        # Install dev dependencies (Jest only)
-npm run serve      # Serve locally at http://localhost:3000
-npm test           # Run test suite
-npm run test:watch # Watch mode
-npm run test:coverage # With coverage report
+pnpm install          # Install dev dependencies (Jest only)
+pnpm run serve        # Serve locally at http://localhost:3000
+pnpm test             # Run test suite
+pnpm run test:watch   # Watch mode
+pnpm run test:coverage # With coverage report
 ```
 
 ## Architecture
@@ -33,8 +33,13 @@ __tests__/
 ### QR Library
 Uses `qr-code-styling@1.5.0` from unpkg CDN. No npm install — loaded via `<script>` tag.
 
+### Firebase Analytics
+Loaded via CDN compat builds (`firebase-app-compat.js` + `firebase-analytics-compat.js`). Config is in `FIREBASE_CONFIG` at the top of `app.js` — replace the `YOUR_*` placeholder values with real credentials before deploying.
+
+The `logEvent()` wrapper is a no-op when `firebase` is not defined (e.g. in Jest), so tests are unaffected. Tracked events: `preset_selected`, `qr_generated`, `qr_saved`, `qr_copied`.
+
 ### Presets
-Six preset objects in `PRESETS` (app.js). Each preset defines:
+Twelve preset objects in `PRESETS` (app.js). Each preset defines:
 - `qr` — options passed directly to `QRCodeStyling` (dot type, colors, corner styles)
 - `frameClass` — CSS class applied to the wrapper div for the preview
 - `swatchBg/swatchColor` — used to render the preset selector thumbnail
@@ -58,7 +63,7 @@ When adding a new preset, update both.
 1. Add entry to `PRESETS` in `app.js` with `name`, `emoji`, `swatchBg`, `swatchColor`, `qr`, `frameClass`
 2. Add `.frame-{name}` CSS class in `style.css`
 3. Add `FRAME_DRAWERS[key]` function in `app.js`
-4. Add test coverage in `__tests__/app.test.js`
+4. Update the preset count and key list in `__tests__/app.test.js` (`has all twelve presets` test)
 
 ## Deployment
 
