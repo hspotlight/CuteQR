@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CuteQR ✨ - Adorable QR Code Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated bokeh blobs -->
+  <div class="blobs" aria-hidden="true">
+    <div class="blob blob-rose"></div>
+    <div class="blob blob-lavender"></div>
+    <div class="blob blob-sky"></div>
+    <div class="blob blob-peach"></div>
+  </div>
+
+  <div class="bg-decoration" aria-hidden="true">
+    <span>🌸</span><span>⭐</span><span>💕</span><span>🌟</span><span>✨</span>
+    <span>💖</span><span>🍬</span><span>⭐</span><span>🌸</span><span>💫</span>
+  </div>
+
+  <header>
+    <div class="logo">
+      <span class="logo-icon">🎀</span>
+      <span class="logo-text">CuteQR</span>
+    </div>
+    <p class="tagline">Turn any link into an adorable QR code ✨</p>
+  </header>
+
+  <main>
+    <!-- Top row: URL input (left) + QR preview (right) -->
+    <div class="top-row">
+      <section class="card input-card">
+        <label for="url-input" class="field-label">🔗 Enter your URL</label>
+        <div class="input-row">
+          <input
+            type="url"
+            id="url-input"
+            class="url-input"
+            placeholder="https://example.com"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <p class="error-msg" id="error-msg" role="alert"></p>
+        <p class="auto-hint">✨ QR generates automatically as you type</p>
+      </section>
+
+      <section class="card preview-card" id="preview-card">
+        <h2 class="section-title">💝 Your QR Code</h2>
+        <div class="preview-area">
+          <div id="qr-placeholder" class="qr-placeholder">
+            <div class="placeholder-icon">🎯</div>
+            <p>Enter a URL to<br>generate your QR</p>
+          </div>
+          <div class="qr-frame-wrapper hidden" id="qr-frame-wrapper">
+            <div id="qr-preview"></div>
+          </div>
+        </div>
+        <p class="copy-success hidden" id="copy-success">✅ Copied to clipboard!</p>
+        <div class="action-row hidden" id="action-row">
+          <button id="save-btn" class="btn btn-primary">💾 Save PNG</button>
+          <button id="copy-btn" class="btn btn-secondary">📋 Copy</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Preset Selector -->
+    <section class="card presets-card">
+      <h2 class="section-title">🎨 Pick a style</h2>
+      <div class="presets-grid" id="presets-grid"></div>
+    </section>
+
+    <!-- Feedback -->
+    <section class="card feedback-card">
+      <div class="feedback-inner">
+        <div class="feedback-text">
+          <h2 class="section-title">💌 Feedback & Suggestions</h2>
+          <p class="feedback-desc">Loving CuteQR? Have ideas, suggestions, or just want to say hi? Drop us a message — we'd love to hear from you! 💕</p>
+        </div>
+        <a href="https://www.facebook.com/HSpotlight" target="_blank" rel="noopener" class="btn btn-fb">
+          💬 HSpotlight
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with 💕 by <a href="https://www.facebook.com/HSpotlight" target="_blank" rel="noopener" class="footer-link">HSpotlight</a></p>
+  </footer>
+
+  <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
