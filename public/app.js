@@ -1,24 +1,15 @@
 'use strict';
 
-// ===== Firebase Analytics =====
-const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBgOjf4XCR-2ARSl2mYBPpypkapGYV1ZUU",
-  authDomain: "cuteqr-prod.firebaseapp.com",
-  projectId: "cuteqr-prod",
-  storageBucket: "cuteqr-prod.firebasestorage.app",
-  messagingSenderId: "35283704716",
-  appId: "1:35283704716:web:4eb0cb7f7fe7dbd66214a9",
-  measurementId: "G-XW3F5CMJNF"
-};
-
-let analytics = null;
-if (typeof firebase !== 'undefined') {
-  firebase.initializeApp(FIREBASE_CONFIG);
-  analytics = firebase.analytics();
-}
-
+// ===== Firebase Analytics (initialized in analytics.js → window.__cuteqrAnalytics) =====
 function logEvent(eventName, params) {
-  if (analytics) analytics.logEvent(eventName, params);
+  const a = typeof window !== 'undefined' && window.__cuteqrAnalytics;
+  if (a) {
+    a.logEvent(eventName, params);
+  } else {
+    console.warn('Firebase analytics not initialized');
+    console.warn('Please check if firebase-config.js and firebase-init.js are loaded correctly');
+    console.warn('If you are running this in a test environment, you can safely ignore this warning');
+  }
 }
 
 // ===== Preset Configurations =====
