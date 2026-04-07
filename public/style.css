@@ -784,6 +784,7 @@ footer {
 @media (max-width: 640px) {
   .top-row        { flex-direction: column; }
   .preview-card   { width: 100%; }
+  .input-card     { width: 100%; }
 }
 
 @media (max-width: 480px) {
