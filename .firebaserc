@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "cuteqr-prod"
-  }
+    "default": "cuteqr-test",
+    "staging": "cuteqr-test"
+  },
+  "targets": {},
+  "etags": {}
 }
