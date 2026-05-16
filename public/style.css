@@ -725,6 +725,51 @@ main {
 .frame-arctic::before { content: '❄️'; position: absolute; top: 6px; left: 8px; font-size: 1.2rem; opacity: .85; }
 .frame-arctic::after  { content: '❄️'; position: absolute; bottom: 6px; right: 8px; font-size: 1.2rem; opacity: .85; }
 
+/* Frame: Twilight Dusk */
+.frame-dusk {
+  background: linear-gradient(135deg, #3d1c6e, #9b4fa6, #f4845f);
+  padding: 22px;
+  border-radius: 24px;
+  box-shadow: 0 10px 36px rgba(61, 28, 110, 0.45), 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+}
+.frame-dusk::before { content: '🌙'; position: absolute; top: 6px; right: 8px; font-size: 1.2rem; opacity: .88; }
+.frame-dusk::after  { content: '🌆'; position: absolute; bottom: 6px; left: 8px; font-size: 1.2rem; opacity: .88; }
+
+/* Frame: Citrus Pop */
+.frame-citrus {
+  background: linear-gradient(135deg, #ffb347, #ffec6e);
+  padding: 22px;
+  border-radius: 28px;
+  box-shadow: 0 8px 30px rgba(194, 65, 12, 0.28);
+  position: relative;
+}
+.frame-citrus::before { content: '🍊'; position: absolute; top: 6px; left: 8px; font-size: 1.25rem; opacity: .88; }
+.frame-citrus::after  { content: '🍋'; position: absolute; bottom: 6px; right: 8px; font-size: 1.25rem; opacity: .88; }
+
+/* Frame: Cloud Nine */
+.frame-cloud {
+  background: linear-gradient(160deg, #e0f2fe, #bae6fd);
+  padding: 22px;
+  border-radius: 32px;
+  box-shadow: 0 8px 28px rgba(3, 105, 161, 0.18), inset 0 0 22px rgba(186, 230, 253, 0.4);
+  position: relative;
+}
+.frame-cloud::before { content: '☁️'; position: absolute; top: 4px; left: 6px; font-size: 1.2rem; opacity: .85; }
+.frame-cloud::after  { content: '☁️'; position: absolute; top: 4px; right: 6px; font-size: 1.2rem; opacity: .85; }
+
+/* Frame: Cherry */
+.frame-cherry {
+  background: linear-gradient(135deg, #fff8f8, #fef2f2);
+  padding: 22px;
+  border-radius: 18px;
+  border: 3px solid #fca5a5;
+  box-shadow: inset 0 0 24px rgba(153, 27, 27, 0.06), 0 6px 22px rgba(153, 27, 27, 0.18);
+  position: relative;
+}
+.frame-cherry::before { content: '🍒'; position: absolute; top: 6px; left: 8px; font-size: 1.2rem; opacity: .88; }
+.frame-cherry::after  { content: '🍒'; position: absolute; bottom: 6px; right: 8px; font-size: 1.2rem; opacity: .88; }
+
 /* ===== Actions ===== */
 .copy-success {
   text-align: center;

@@ -213,6 +213,58 @@ const PRESETS = {
       backgroundOptions:    { color: '#f0f9fc' },
     },
   },
+  dusk: {
+    name: 'Twilight Dusk',
+    emoji: '🌆',
+    swatchBg: 'linear-gradient(135deg, #3d1c6e, #f4845f)',
+    swatchColor: '#f4c97a',
+    frameClass: 'frame-dusk',
+    qr: {
+      dotsOptions:          { type: 'extra-rounded', color: '#3d1c6e' },
+      cornersSquareOptions: { type: 'extra-rounded', color: '#6b21a8' },
+      cornersDotOptions:    { type: 'dot',           color: '#c2410c' },
+      backgroundOptions:    { color: '#fff1e6' },
+    },
+  },
+  citrus: {
+    name: 'Citrus Pop',
+    emoji: '🍊',
+    swatchBg: 'linear-gradient(135deg, #ffb347, #ffec6e)',
+    swatchColor: '#b45309',
+    frameClass: 'frame-citrus',
+    qr: {
+      dotsOptions:          { type: 'rounded',       color: '#c2410c' },
+      cornersSquareOptions: { type: 'extra-rounded', color: '#b45309' },
+      cornersDotOptions:    { type: 'dot',           color: '#c2410c' },
+      backgroundOptions:    { color: '#fffbeb' },
+    },
+  },
+  cloud: {
+    name: 'Cloud Nine',
+    emoji: '☁️',
+    swatchBg: 'linear-gradient(135deg, #e0f2fe, #bae6fd)',
+    swatchColor: '#0369a1',
+    frameClass: 'frame-cloud',
+    qr: {
+      dotsOptions:          { type: 'dots',          color: '#0369a1' },
+      cornersSquareOptions: { type: 'extra-rounded', color: '#075985' },
+      cornersDotOptions:    { type: 'dot',           color: '#0369a1' },
+      backgroundOptions:    { color: '#f0f9ff' },
+    },
+  },
+  cherry: {
+    name: 'Cherry',
+    emoji: '🍒',
+    swatchBg: 'linear-gradient(135deg, #fef2f2, #fecaca)',
+    swatchColor: '#991b1b',
+    frameClass: 'frame-cherry',
+    qr: {
+      dotsOptions:          { type: 'classy',        color: '#991b1b' },
+      cornersSquareOptions: { type: 'square',        color: '#7f1d1d' },
+      cornersDotOptions:    { type: 'square',        color: '#991b1b' },
+      backgroundOptions:    { color: '#fff8f8' },
+    },
+  },
 };
 
 // ===== Dual export (browser global + CommonJS for Jest) =====
