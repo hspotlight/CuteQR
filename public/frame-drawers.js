@@ -671,6 +671,185 @@ const FRAME_DRAWERS = {
     ctx.fillText('❄️', 38,        38);
     ctx.fillText('❄️', size - 38, size - 38);
   },
+
+  dusk: (ctx, size, qrImg) => {
+    const pad  = Math.round(size * 0.13);
+    const qrSz = size - pad * 2;
+
+    const bg = ctx.createLinearGradient(0, 0, size, size);
+    bg.addColorStop(0,   '#3d1c6e');
+    bg.addColorStop(0.5, '#9b4fa6');
+    bg.addColorStop(1,   '#f4845f');
+    ctx.fillStyle = bg;
+    roundedRect(ctx, 0, 0, size, size, 36);
+    ctx.fill();
+
+    ctx.save();
+    ctx.globalAlpha = 0.12;
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * Math.PI * 2;
+      const cx = size * 0.72, cy = size * 0.18, r = size * 0.28 + i * 18;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.strokeStyle = '#f4c97a';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    ctx.shadowColor = 'rgba(61,28,110,0.3)';
+    ctx.shadowBlur  = 20;
+    ctx.fillStyle   = 'rgba(255,241,230,0.92)';
+    roundedRect(ctx, pad - 14, pad - 14, qrSz + 28, qrSz + 28, 22);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    ctx.drawImage(qrImg, pad, pad, qrSz, qrSz);
+
+    ctx.font         = `${Math.round(size * 0.055)}px serif`;
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('🌆', 42,        size - 42);
+    ctx.fillText('🌙', size - 42, 42);
+  },
+
+  citrus: (ctx, size, qrImg) => {
+    const pad  = Math.round(size * 0.13);
+    const qrSz = size - pad * 2;
+
+    const bg = ctx.createLinearGradient(0, 0, size, size);
+    bg.addColorStop(0, '#ffb347');
+    bg.addColorStop(1, '#ffec6e');
+    ctx.fillStyle = bg;
+    roundedRect(ctx, 0, 0, size, size, 48);
+    ctx.fill();
+
+    const slices = [
+      { x: 42, y: 42, r: 28 }, { x: size - 42, y: size - 42, r: 28 },
+      { x: size - 48, y: 48, r: 20 }, { x: 48, y: size - 48, r: 20 },
+    ];
+    slices.forEach(({ x, y, r }) => {
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(180, 83, 9, 0.25)';
+      ctx.lineWidth   = 2.5;
+      ctx.stroke();
+      for (let seg = 0; seg < 6; seg++) {
+        const a = (seg / 6) * Math.PI * 2;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + Math.cos(a) * r, y + Math.sin(a) * r);
+        ctx.stroke();
+      }
+    });
+
+    ctx.shadowColor = 'rgba(194,65,12,0.18)';
+    ctx.shadowBlur  = 18;
+    ctx.fillStyle   = 'rgba(255,251,235,0.92)';
+    roundedRect(ctx, pad - 14, pad - 14, qrSz + 28, qrSz + 28, 22);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    ctx.drawImage(qrImg, pad, pad, qrSz, qrSz);
+
+    ctx.font         = `${Math.round(size * 0.055)}px serif`;
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('🍊', 42,        42);
+    ctx.fillText('🍋', size - 42, size - 42);
+  },
+
+  cloud: (ctx, size, qrImg) => {
+    const pad  = Math.round(size * 0.13);
+    const qrSz = size - pad * 2;
+
+    const bg = ctx.createLinearGradient(0, 0, 0, size);
+    bg.addColorStop(0, '#e0f2fe');
+    bg.addColorStop(1, '#bae6fd');
+    ctx.fillStyle = bg;
+    roundedRect(ctx, 0, 0, size, size, 40);
+    ctx.fill();
+
+    const drawCloud = (cx, cy, scale) => {
+      ctx.fillStyle = 'rgba(255,255,255,0.55)';
+      const bumps = [
+        { ox: 0,    oy: 0,  r: scale * 26 },
+        { ox: -28 * scale, oy: 10 * scale, r: scale * 20 },
+        { ox:  28 * scale, oy: 10 * scale, r: scale * 20 },
+        { ox: -52 * scale, oy: 20 * scale, r: scale * 14 },
+        { ox:  52 * scale, oy: 20 * scale, r: scale * 14 },
+      ];
+      bumps.forEach(({ ox, oy, r }) => {
+        ctx.beginPath();
+        ctx.arc(cx + ox, cy + oy, r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    };
+    drawCloud(size * 0.18, size * 0.12, 1.2);
+    drawCloud(size * 0.78, size * 0.88, 1.0);
+    drawCloud(size * 0.85, size * 0.18, 0.85);
+    drawCloud(size * 0.12, size * 0.82, 0.9);
+
+    ctx.shadowColor = 'rgba(3,105,161,0.15)';
+    ctx.shadowBlur  = 18;
+    ctx.fillStyle   = 'rgba(240,249,255,0.94)';
+    roundedRect(ctx, pad - 14, pad - 14, qrSz + 28, qrSz + 28, 24);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    ctx.drawImage(qrImg, pad, pad, qrSz, qrSz);
+
+    ctx.font         = `${Math.round(size * 0.055)}px serif`;
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('☁️', 42,        42);
+    ctx.fillText('☁️', size - 42, 42);
+    ctx.fillText('✨', size / 2,  size - 38);
+  },
+
+  cherry: (ctx, size, qrImg) => {
+    const pad  = Math.round(size * 0.13);
+    const qrSz = size - pad * 2;
+
+    ctx.fillStyle = '#fff8f8';
+    roundedRect(ctx, 0, 0, size, size, 24);
+    ctx.fill();
+
+    const vignette = ctx.createRadialGradient(size / 2, size / 2, qrSz * 0.4, size / 2, size / 2, size * 0.8);
+    vignette.addColorStop(0, 'rgba(153,27,27,0)');
+    vignette.addColorStop(1, 'rgba(153,27,27,0.10)');
+    ctx.fillStyle = vignette;
+    ctx.fillRect(0, 0, size, size);
+
+    ctx.strokeStyle = '#fca5a5';
+    ctx.lineWidth   = 5;
+    roundedRect(ctx, 12, 12, size - 24, size - 24, 18);
+    ctx.stroke();
+
+    ctx.strokeStyle = '#fee2e2';
+    ctx.lineWidth   = 2;
+    roundedRect(ctx, 24, 24, size - 48, size - 48, 12);
+    ctx.stroke();
+
+    ctx.fillStyle = 'rgba(255,248,248,0.95)';
+    roundedRect(ctx, pad - 12, pad - 12, qrSz + 24, qrSz + 24, 16);
+    ctx.fill();
+
+    ctx.strokeStyle = '#fca5a5';
+    ctx.lineWidth   = 2;
+    roundedRect(ctx, pad - 12, pad - 12, qrSz + 24, qrSz + 24, 16);
+    ctx.stroke();
+
+    ctx.drawImage(qrImg, pad, pad, qrSz, qrSz);
+
+    ctx.font         = `${Math.round(size * 0.055)}px serif`;
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('🍒', 40,        40);
+    ctx.fillText('🍒', size - 40, 40);
+    ctx.fillText('🍒', 40,        size - 40);
+    ctx.fillText('🍒', size - 40, size - 40);
+  },
 };
 
 // ===== Dual export (browser global + CommonJS for Jest) =====

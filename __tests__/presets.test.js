@@ -7,13 +7,14 @@ const { PRESETS } = require('../public/presets');
 describe('PRESETS configuration', () => {
   const REQUIRED_QR_KEYS = ['dotsOptions', 'cornersSquareOptions', 'cornersDotOptions', 'backgroundOptions'];
 
-  test('has all sixteen presets', () => {
+  test('has all twenty presets', () => {
     const keys = Object.keys(PRESETS);
-    expect(keys).toHaveLength(16);
+    expect(keys).toHaveLength(20);
     expect(keys).toEqual([
       'bubbly', 'retro', 'kawaii', 'minimal', 'stamp', 'neon',
       'cotton', 'matcha', 'galaxy', 'sunrise', 'ocean', 'sakura',
       'forest', 'candy', 'parchment', 'arctic',
+      'dusk', 'citrus', 'cloud', 'cherry',
     ]);
   });
 
