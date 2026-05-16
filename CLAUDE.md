@@ -16,16 +16,23 @@ pnpm run test:coverage # With coverage report
 
 ```
 public/
-  index.html   — Single page app
-  style.css    — All styles (cute pastel theme, frame styles, responsive)
-  app.js       — All app logic (presets, QR generation, export, clipboard)
+  index.html        — Single page app
+  style.css         — All styles (cute pastel theme, frame styles, responsive)
+  presets.js        — PRESETS config only (colors, dot types, frameClass) — pure data
+  frame-drawers.js  — FRAME_DRAWERS canvas functions + roundedRect/drawHeart helpers
+  app.js            — App logic: QR generation, export, clipboard, event handlers
 
 __tests__/
-  setup.js     — Jest mocks (canvas, clipboard, QRCodeStyling)
-  app.test.js  — Tests for validateUrl, escapeHtml, PRESETS, canvas helpers
+  setup.js              — Jest mocks (canvas, clipboard, QRCodeStyling)
+  presets.test.js       — Tests for PRESETS config
+  frame-drawers.test.js — Tests for FRAME_DRAWERS, roundedRect, drawHeart
+  app.test.js           — Tests for validateUrl, escapeHtml, logEvent
 
 .github/workflows/
   deploy.yml   — Test → deploy to GitHub Pages on push to main
+
+.claude/skills/
+  add-preset.md — Skill: how to add or modify a QR preset (read this first)
 ```
 
 ## Key Concepts
@@ -39,7 +46,7 @@ Loaded via CDN compat builds (`firebase-app-compat.js` + `firebase-analytics-com
 The `logEvent()` wrapper is a no-op when `firebase` is not defined (e.g. in Jest), so tests are unaffected. Tracked events: `preset_selected`, `qr_generated`, `qr_saved`, `qr_copied`.
 
 ### Presets
-Twelve preset objects in `PRESETS` (app.js). Each preset defines:
+Sixteen preset objects in `PRESETS` (`public/presets.js`). Each preset defines:
 - `qr` — options passed directly to `QRCodeStyling` (dot type, colors, corner styles)
 - `frameClass` — CSS class applied to the wrapper div for the preview
 - `swatchBg/swatchColor` — used to render the preset selector thumbnail
@@ -53,17 +60,20 @@ Twelve preset objects in `PRESETS` (app.js). Each preset defines:
 
 ### Frame Styles (CSS preview vs canvas export)
 Each preset has two implementations:
-- **CSS** (`.frame-*` classes in style.css) — for the live preview
-- **Canvas** (`FRAME_DRAWERS` object in app.js) — for the 1024px PNG export
+- **CSS** (`.frame-*` classes in `style.css`) — for the live preview
+- **Canvas** (`FRAME_DRAWERS` object in `frame-drawers.js`) — for the 1024px PNG export
 
 When adding a new preset, update both.
 
 ## Adding a New Preset
 
-1. Add entry to `PRESETS` in `app.js` with `name`, `emoji`, `swatchBg`, `swatchColor`, `qr`, `frameClass`
-2. Add `.frame-{name}` CSS class in `style.css`
-3. Add `FRAME_DRAWERS[key]` function in `app.js`
-4. Update the preset count and key list in `__tests__/app.test.js` (`has all twelve presets` test)
+> Use the `.claude/skills/add-preset.md` skill — it has the full schema, checklist, and helper function docs.
+
+Short version:
+1. Add entry to `PRESETS` in **`public/presets.js`** (config only — colors, dot type, frameClass)
+2. Add `FRAME_DRAWERS[key]` function in **`public/frame-drawers.js`**
+3. Add `.frame-{name}` CSS class in `style.css`
+4. Update the preset count and key list in `__tests__/presets.test.js`
 
 ## Deployment
 
