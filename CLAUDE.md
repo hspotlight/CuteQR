@@ -32,7 +32,8 @@ __tests__/
   deploy.yml   — Test → deploy to GitHub Pages on push to main
 
 .claude/skills/
-  add-preset.md — Skill: how to add or modify a QR preset (read this first)
+  add-preset-config.md — Skill: add/edit a PRESETS config entry (colors, dot style)
+  add-frame-drawer.md  — Skill: add/edit a FRAME_DRAWERS canvas function
 ```
 
 ## Key Concepts
@@ -67,7 +68,7 @@ When adding a new preset, update both.
 
 ## Adding a New Preset
 
-> Use the `.claude/skills/add-preset.md` skill — it has the full schema, checklist, and helper function docs.
+> Use `.claude/skills/add-preset-config.md` for the config entry, `.claude/skills/add-frame-drawer.md` for the canvas function.
 
 Short version:
 1. Add entry to `PRESETS` in **`public/presets.js`** (config only — colors, dot type, frameClass)
